@@ -8,7 +8,7 @@ describe("Application API", () => {
             .get("/health");
 
         expect(response.statusCode).toBe(200);
-        expect(response.body.status).toBe("UP");
+        expect(response.body.status).toBe("Upar");
     });
 
     test("add endpoint calculates correctly", async () => {
@@ -17,6 +17,13 @@ describe("Application API", () => {
 
         expect(response.statusCode).toBe(200);
         expect(response.body.result).toBe(42);
+    });
+    test("sub endpoint calculates correctly", async () => {
+        const response = await request(app)
+            .get("/api/sub?a=20&b=22");
+
+        expect(response.statusCode).toBe(200);
+        expect(response.body.result).toBe(2);
     });
 
     test("add endpoint rejects invalid input", async () => {
